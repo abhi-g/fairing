@@ -64,6 +64,8 @@ def add_gcp_credentials_if_exists(kube_manager, pod_spec, namespace):
         else:
             logger.warning("Not able to find gcp credentials secret: {}"\
                            .format(constants.GCP_CREDS_SECRET_NAME))
+            # TODO: Add a check to verify if workload identity is turned on in
+            # the cluster
             logger.warning("Trying workload identity service account: {}"\
                            .format(constants.GCP_SERVICE_ACCOUNT_NAME))
             pod_spec.service_account_name = constants.GCP_SERVICE_ACCOUNT_NAME
